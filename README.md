@@ -58,6 +58,43 @@ hermes -p coder -s coder-ext-skill
 | code-explain | 代码解释 | P2 |
 | tech-debt | 技术债务 | P2 |
 
+## 同步到 Hermes
+
+### 安装 Skill 文件到 Hermes Profile
+
+```bash
+# 进入仓库目录
+cd /home/gql/repos/coder-ext-skill
+
+# 执行同步脚本
+bash sync-to-hermes.sh coder
+```
+
+同步后目录结构：
+```
+~/.hermes/profiles/coder/skills/
+├── coder-ext-skill/                    # 路由器
+│   ├── SKILL.md
+│   └── references/
+├── bmad-dev/                          # 独立 skill（软链接）
+│   └── SKILL.md → coder-ext-skill/references/bmad-dev.md
+├── debugging-strategies/               # 独立 skill（软链接）
+│   └── SKILL.md → coder-ext-skill/references/debugging-strategies.md
+└── ...                                 # 其他 skills
+```
+
+### 验证安装
+
+```bash
+# 查看已安装的 skills
+ls -la ~/.hermes/profiles/coder/skills/
+
+# 验证软链接
+readlink -f ~/.hermes/profiles/coder/skills/bmad-dev/SKILL.md
+```
+
+---
+
 ## 工作流
 
 详见 [SKILL.md](SKILL.md)
