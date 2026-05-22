@@ -228,4 +228,119 @@ API 设计      → api-design-principles
 | code-explain | 代码解释 | P2 |
 | tech-debt | 技术债务 | P2 |
 
+---
+
+## 🔗 与 gql-coder 主 skill 联动
+
 **注意**：`coder-ext-skill` 不会覆盖 `gql-coder` 主 skill，它们协同工作。
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  gql-coder 主 skill                                         │
+│    │                                                        │
+│    ├─ 通用开发任务 → coder-ext-skill（路由）                  │
+│    │              └─→ 具体 skill 执行                         │
+│    │                                                        │
+│    └─ 特定技能任务 → 直接调用具体 skill                       │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**何时使用 coder-ext-skill**：
+- 任务模糊，需要判断用哪个 skill
+- 复杂任务需要多 skill 组合
+- 不确定某个 skill 是否适用
+
+**何时直接调用具体 skill**：
+- 任务明确，比如"用 TDD 开发"
+- 已确定需要哪个 skill
+- 只需要单个 skill
+
+---
+
+## 🚨 常见错误
+
+### 错误 1: 过度路由
+
+```
+❌ "用户说调试 bug，路由到 debugging-strategies，
+    然后又问用户要不要用 error-analysis"
+✓  直接路由到最可能的 skill，让用户决定是否深入
+```
+
+### 错误 2: 路由到不存在的 skill
+
+```
+❌ 根据关键词猜 skill 名称
+✓  严格按照技能地图中的 skill 名称路由
+```
+
+### 错误 3: 忘记 Fallback
+
+```
+❌ 无法匹配时不知所措
+✓  无法匹配时 → bmad-dev（让开发核心判断）
+```
+
+---
+
+## 🔗 相关角色联动
+
+| 角色 | 协作场景 |
+|------|---------|
+| **arc** | 架构决策时：先 arc-ext-skill 评审架构，再 coder-ext-skill 执行 |
+| **review** | 代码完成后：coder-ext-skill 自审后 → review-ext-skill 正式评审 |
+| **sm** | 任务分解时：sm-ext-skill 规划任务 → coder-ext-skill 执行 |
+| **qa** | 测试相关：coder-ext-skill 写测试 → qa-ext-skill 验证 |
+
+---
+
+## 🗣️ 示例对话
+
+### 示例 1: 路由到 bmad-dev
+
+```
+用户：开始新功能开发
+AI：分析：包含"开发"、"新功能"
+     路由到 bmad-dev
+     执行：开发规范核心流程
+```
+
+### 示例 2: 路由到调试组合
+
+```
+用户：线上报错了
+AI：分析：包含"报错"
+     路由到 debugging-strategies
+     执行：调试策略
+     建议：是否需要 error-analysis 深度诊断？
+```
+
+### 示例 3: 复杂任务多 skill 组合
+
+```
+用户：完成新功能并准备合并
+AI：分析：包含"完成"+"合并"
+     路由组合：
+       1. bmad-dev（新功能开发）
+       2. write-tests（写测试）
+       3. finishing-a-development-branch（分支管理）
+       4. code-review-excellence（自审）
+```
+
+### 示例 4: Fallback 处理
+
+```
+用户：帮我看看这个
+AI：分析：无法匹配关键词
+     Fallback → bmad-dev
+     执行：开发核心判断任务类型
+     反馈：这个任务是"调试 bug"，建议用 debugging-strategies
+```
+
+---
+
+## 升级说明
+
+查看 [update_readme.md](update_readme.md) 了解如何同步最新 skill。
+
+当前版本：v2.0.0
