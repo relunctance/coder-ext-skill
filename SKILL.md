@@ -2,11 +2,43 @@
 name: coder-ext-skill
 description: Coder 技能索引路由器 - 接收任何开发任务，智能推荐最合适的 skill 并执行
 version: 2.0.0
+author: relunctance
+license: MIT
+category: gql-bots
+tags:
+  - coder
+  - development
+  - skill-router
+  - gql-bots
+  - intelligent-router
 hermes:
+  platforms:
+    hermes: true
   auto_route: true
 ---
 
 # Coder Ext Skill - 智能技能路由器
+
+> **核心定位**：Coder 角色的中央路由器。任何开发任务进来，先查这里，再路由到具体 skill。
+
+---
+
+## ⚡ TL;DR 速查索引
+
+| 你要做的事 | 直接路由 | 说明 |
+|------------|---------|------|
+| 开始开发 | bmad-dev | 开发规范 |
+| 调试 bug | debugging-strategies | 调试策略 |
+| 写测试 | write-tests / tdd | 单元/集成测试 |
+| 合并分支/PR | finishing-a-development-branch | PR 规范 |
+| 代码自审 | code-review-excellence | 自审清单 |
+| 重构代码 | refactor-code | 安全重构 |
+| 依赖安全 | deps-audit | 漏洞扫描 |
+| 复杂决策 | ultra-think | 深度思考 |
+| 解释代码 | code-explain | 注释生成 |
+| 不知道用哪个 | bmad-dev | 让它帮你判断 |
+
+---
 
 ## ⚡ 快速路由（必读）
 
@@ -30,80 +62,104 @@ hermes:
 | "解释代码" | code-explain | `hermes -p coder -s code-explain` |
 | "技术债务" | tech-debt | `hermes -p coder -s tech-debt` |
 
-### 一句话触发规则
+### 一句话触发规则（增强版）
 
 ```
-任务包含...         → 直接路由到...
-────────────────────────────────────────────────────────────
+任务包含...              → 直接路由到...
+────────────────────────────────────────────────────────────────────────────
+# 开发流程
 "开发"、"新功能"、"开始" → bmad-dev
+"任务分解"、"分解任务" → bmad-dev
+"代码规范"、"风格" → bmad-dev
+
+# 调试/错误
 "bug"、"调试"、"报错" → debugging-strategies
 "错误处理"、"异常" → error-handling-patterns
-"测试"、"单元测试" → write-tests
-"tdd"、"测试驱动" → tdd
-"分支"、"合并"、"pr" → finishing-a-development-branch
-"自审"、"code review" → code-review-excellence
-"git"、"版本控制" → git-advanced-workflows
-"重构"、"refactor" → refactor-code
-"决策"、"方案评估" → ultra-think
-"依赖"、"安全"、"漏洞" → deps-audit
-"api"、"接口"、"rest" → api-design-principles
 "分析错误"、"诊断" → error-analysis
-"解释"、"说明代码" → code-explain
-"技术债"、"debt" → tech-debt
+"堆栈"、"stack"、"日志" → error-analysis
+
+# 测试
+"测试"、"单元测试"、"写测试" → write-tests
+"tdd"、"测试驱动"、"红绿" → tdd
+"集成测试"、"e2e" → write-tests
+"测试覆盖"、"coverage" → write-tests
+
+# 分支/Git
+"分支"、"合并"、"pr" → finishing-a-development-branch
+"git"、"版本控制"、"commit" → git-advanced-workflows
+"rebase"、"cherry-pick" → git-advanced-workflows
+"自审"、"code review" → code-review-excellence
+
+# 重构/优化
+"重构"、"refactor"、"优化" → refactor-code
+"性能优化"、"代码优化" → refactor-code
+
+# 决策/分析
+"决策"、"方案评估"、"选型" → ultra-think
+"分析"、"评估"、"比较" → ultra-think
+
+# 依赖/安全
+"依赖"、"漏洞"、"安全" → deps-audit
+"npm audit"、"安全扫描" → deps-audit
+
+# API 设计
+"api"、"接口"、"rest" → api-design-principles
+"endpoint"、"路由" → api-design-principles
+
+# 代码解释
+"解释"、"说明"、"注释" → code-explain
+"文档"、"注释生成" → code-explain
+
+# 技术债
+"技术债"、"debt"、"债" → tech-debt
 ```
+
+---
 
 ## 🔀 智能路由决策树
 
 ```
 收到 Coder 任务
     │
-    ├─ 包含 "开发" / "新功能" / "开始"
-    │   └─→ bmad-dev
+    ├─ 🎯 开发流程？
+    │   └─ bmad-dev
+    │         ├─ 任务分解
+    │         ├─ 代码规范
+    │         └─ Git flow
     │
-    ├─ 包含 "bug" / "调试" / "报错"
-    │   └─→ debugging-strategies
-    │       └─ error-analysis（如需深度诊断）
+    ├─ 🎯 调试/错误？
+    │   ├─ debugging-strategies（调试策略）
+    │   ├─ error-handling-patterns（错误处理）
+    │   └─ error-analysis（深度诊断）
     │
-    ├─ 包含 "错误处理" / "异常"
-    │   └─→ error-handling-patterns
+    ├─ 🎯 测试？
+    │   ├─ write-tests（写测试）
+    │   └─ tdd（TDD 开发）
     │
-    ├─ 包含 "测试" / "单元测试"
-    │   └─→ write-tests
-    │       └─ tdd（如需 TDD 方式）
+    ├─ 🎯 分支/Git？
+    │   ├─ finishing-a-development-branch（合并/PR）
+    │   └─ git-advanced-workflows（高级 Git）
     │
-    ├─ 包含 "分支" / "合并" / "pr"
-    │   └─→ finishing-a-development-branch
+    ├─ 🎯 重构/优化？
+    │   └─ refactor-code
     │
-    ├─ 包含 "自审" / "code review"
-    │   └─→ code-review-excellence
+    ├─ 🎯 决策/分析？
+    │   └─ ultra-think
     │
-    ├─ 包含 "git" / "版本控制"
-    │   └─→ git-advanced-workflows
+    ├─ 🎯 依赖/安全？
+    │   └─ deps-audit
     │
-    ├─ 包含 "重构" / "refactor"
-    │   └─→ refactor-code
+    ├─ 🎯 API 设计？
+    │   └─ api-design-principles
     │
-    ├─ 包含 "决策" / "方案评估"
-    │   └─→ ultra-think
+    ├─ 🎯 代码解释？
+    │   └─ code-explain
     │
-    ├─ 包含 "依赖" / "安全" / "漏洞"
-    │   └─→ deps-audit
-    │
-    ├─ 包含 "api" / "接口" / "rest"
-    │   └─→ api-design-principles
-    │
-    ├─ 包含 "分析错误" / "诊断"
-    │   └─→ error-analysis
-    │
-    ├─ 包含 "解释" / "说明代码"
-    │   └─→ code-explain
-    │
-    ├─ 包含 "技术债" / "debt"
-    │   └─→ tech-debt
-    │
-    └─ 无匹配
-        └─→ bmad-dev（让开发核心判断）
+    └─ ❓ 不知道
+        └─ bmad-dev + 询问澄清
 ```
+
+---
 
 ## 📋 技能地图
 
@@ -125,23 +181,102 @@ hermes:
 | code-explain | 代码解释：注释生成、文档提取 | P2 | 解释、说明代码 |
 | tech-debt | 技术债务：识别、跟踪、偿还策略 | P2 | 技术债、debt |
 
-## 🎯 场景化深度参考
+---
 
-### 详细参考（引用）
+## 🎯 场景化深度参考（4大场景）
 
-**自然语言示例 + Fallback + 组合流** → 见 `references/quick-reference.md`
+### 场景 1: 新功能开发 🆕
+
+```
+需求：开始一个新功能
+    │
+    └─ bmad-dev（遵循规范）
+          ├─ 任务分解
+          │     → 子任务拆分
+          │     → 依赖关系
+          │
+          ├─ 开发
+          │     → bmad-dev
+          │     → write-tests（测试）
+          │     → tdd（如需 TDD）
+          │
+          └─ 收尾
+                → finishing-a-development-branch
+                → code-review-excellence（自审）
+                → deps-audit（依赖检查）
+```
+
+### 场景 2: Bug 调试 🔍
+
+```
+需求：线上报错了
+    │
+    ├─ debugging-strategies（调试策略）
+    │     → 日志分析
+    │     → 断点设置
+    │     → 问题定位
+    │
+    └─ error-analysis（如需深度诊断）
+          → 堆栈跟踪
+          → 根因分析
+```
+
+### 场景 3: 代码重构 🛠️
+
+```
+需求：需要重构代码
+    │
+    └─ refactor-code
+          ├─ 重构前
+          │     → 识别坏味道
+          │     → 编写测试保护网
+          │
+          ├─ 重构中
+          │     → 小步重构
+          │     → 频繁测试
+          │
+          └─ 重构后
+                → 测试通过
+                → code-review-excellence
+```
+
+### 场景 4: 分支管理 🔀
+
+```
+需求：准备合并分支
+    │
+    └─ finishing-a-development-branch
+          ├─ 自审
+          │     → code-review-excellence
+          │     → 自审清单
+          │
+          ├─ 依赖检查
+          │     → deps-audit
+          │
+          └─ Git 操作
+                → git rebase（如需）
+                → 创建 PR
+                → code review
+```
 
 ### 快速决策速查
 
 ```
-新功能开发     → bmad-dev → write-tests/tdd → finishing-a-dev-branch
-Bug 调试      → debugging-strategies → error-analysis
-错误处理      → error-handling-patterns
-代码自审      → code-review-excellence → deps-audit
-重构          → refactor-code
-复杂决策      → ultra-think
-API 设计      → api-design-principles
-技术债务      → tech-debt
+┌────────────────────────────────────────────────────────────┐
+│  场景              │  路由顺序                              │
+├────────────────────────────────────────────────────────────┤
+│  新功能开发         │  bmad-dev → write-tests → finishing  │
+│  Bug 调试          │  debugging-strategies → error-analysis │
+│  错误处理          │  error-handling-patterns              │
+│  代码自审          │  code-review-excellence → deps-audit  │
+│  重构              │  refactor-code                       │
+│  复杂决策          │  ultra-think                         │
+│  API 设计          │  api-design-principles                │
+│  依赖安全          │  deps-audit                          │
+│  代码解释          │  code-explain                        │
+│  技术债务          │  tech-debt                           │
+│  未知任务          │  bmad-dev + 询问澄清                 │
+└────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -204,41 +339,15 @@ API 设计      → api-design-principles
 
 ---
 
-## 📖 References 快速索引
-
-详见 `references/quick-reference.md`（自然语言示例 + Fallback + 组合流）
-
-每个 skill 文件都有 TL;DR 摘要：
-
-| Skill | TL;DR | 行数 |
-|-------|-------|------|
-| bmad-dev | 开发规范核心 | P0 |
-| debugging-strategies | 调试策略 | P0 |
-| error-handling-patterns | 错误处理 | P0 |
-| write-tests | 写测试 | P0 |
-| tdd | TDD 开发 | P0 |
-| finishing-a-development-branch | 分支管理 | P0 |
-| code-review-excellence | 代码自审 | P1 |
-| git-advanced-workflows | Git 高级操作 | P1 |
-| refactor-code | 重构规范 | P1 |
-| ultra-think | 复杂决策 | P1 |
-| deps-audit | 依赖安全 | P1 |
-| api-design-principles | API 设计 | P2 |
-| error-analysis | 错误诊断 | P2 |
-| code-explain | 代码解释 | P2 |
-| tech-debt | 技术债务 | P2 |
-
----
-
 ## 🔗 与 gql-coder 主 skill 联动
 
 **注意**：`coder-ext-skill` 不会覆盖 `gql-coder` 主 skill，它们协同工作。
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  gql-coder 主 skill                                         │
+│  gql-coder 主 skill                                        │
 │    │                                                        │
-│    ├─ 通用开发任务 → coder-ext-skill（路由）                  │
+│    ├─ 通用开发任务 → coder-ext-skill（路由）                │
 │    │              └─→ 具体 skill 执行                         │
 │    │                                                        │
 │    └─ 特定技能任务 → 直接调用具体 skill                       │
@@ -257,29 +366,40 @@ API 设计      → api-design-principles
 
 ---
 
+## 📖 References 快速索引
+
+详见 `references/quick-reference.md`（自然语言示例 + Fallback + 组合流）
+
+每个 skill 文件都有 TL;DR 摘要：
+
+| Skill | TL;DR | 说明 |
+|-------|-------|------|
+| bmad-dev.md | 开发规范核心 | 任务分解、代码规范 |
+| debugging-strategies.md | 调试策略 | 日志、断点、定位 |
+| error-handling-patterns.md | 错误处理 | 异常、边界 |
+| write-tests.md | 写测试 | 单元、集成、E2E |
+| tdd.md | TDD 开发 | 红绿重构 |
+| finishing-a-development-branch.md | 分支管理 | PR、自审 |
+| code-review-excellence.md | 代码自审 | 清单、问题 |
+| git-advanced-workflows.md | Git 高级 | rebase、cherry-pick |
+| refactor-code.md | 重构规范 | 安全重构 |
+| ultra-think.md | 复杂决策 | 深度思考 |
+| deps-audit.md | 依赖安全 | 漏洞扫描 |
+| api-design-principles.md | API 设计 | RESTful、GraphQL |
+| error-analysis.md | 错误诊断 | 日志、堆栈 |
+| code-explain.md | 代码解释 | 注释、文档 |
+| tech-debt.md | 技术债务 | 识别、偿还 |
+
+---
+
 ## 🚨 常见错误
 
-### 错误 1: 过度路由
-
-```
-❌ "用户说调试 bug，路由到 debugging-strategies，
-    然后又问用户要不要用 error-analysis"
-✓  直接路由到最可能的 skill，让用户决定是否深入
-```
-
-### 错误 2: 路由到不存在的 skill
-
-```
-❌ 根据关键词猜 skill 名称
-✓  严格按照技能地图中的 skill 名称路由
-```
-
-### 错误 3: 忘记 Fallback
-
-```
-❌ 无法匹配时不知所措
-✓  无法匹配时 → bmad-dev（让开发核心判断）
-```
+| 错误 | 正确做法 |
+|------|---------|
+| 直接说"开发" | 说明开发什么（新功能/bug修复/重构） |
+| 不确定用哪个 skill | → bmad-dev 让它帮你判断 |
+| 过度路由 | 直接路由到最可能的 skill |
+| 忘记 Fallback | 无法匹配时 → bmad-dev |
 
 ---
 
@@ -315,19 +435,7 @@ AI：分析：包含"报错"
      建议：是否需要 error-analysis 深度诊断？
 ```
 
-### 示例 3: 复杂任务多 skill 组合
-
-```
-用户：完成新功能并准备合并
-AI：分析：包含"完成"+"合并"
-     路由组合：
-       1. bmad-dev（新功能开发）
-       2. write-tests（写测试）
-       3. finishing-a-development-branch（分支管理）
-       4. code-review-excellence（自审）
-```
-
-### 示例 4: Fallback 处理
+### 示例 3: Fallback 处理
 
 ```
 用户：帮我看看这个
