@@ -121,6 +121,9 @@ hermes:
 "go"、"golang"、"风格"、"格式化"、"错误处理" → go-style-guide
 "go"、"golang"、"微服务"、"性能"、"observability" → go-modern
 
+# 编码约束
+"中英混杂"、"语言约束"、"confidence score"、"root cause"、"KISS"、"DRY" → coding-constraints
+
 # API 设计
 "api"、"接口"、"rest" → api-design-principles
 "endpoint"、"路由" → api-design-principles
@@ -201,6 +204,7 @@ hermes:
 | **go-concurrency** | **Go 并发：Map 安全、Race Detector** | **P0** | **Go、并发、race、mutex** |
 | **go-style-guide** | **Go 风格：gofmt、错误处理、接口** | **P1** | **Go、风格、格式化** |
 | **go-modern** | **Go 现代：1.21+、微服务、性能** | **P1** | **Go、微服务、性能** |
+| **coding-constraints** | **编码约束：语言、调试、代码质量** | **P0** | **中英混杂、KISS、DRY** |
 | api-design-principles | API 设计：RESTful、GraphQL、版本管理 | P2 | api、接口、rest |
 | error-analysis | 错误诊断：日志分析、堆栈跟踪 | P2 | 分析错误、诊断 |
 | code-explain | 代码解释：注释生成、文档提取 | P2 | 解释、说明代码 |
@@ -416,6 +420,7 @@ hermes:
 | **go-concurrency.md** | **Go 并发** | **Map 安全、Race Detector** |
 | **go-style-guide.md** | **Go 风格** | **gofmt、错误处理、接口** |
 | **go-modern.md** | **Go 现代** | **Go 1.21+、微服务** |
+| **coding-constraints.md** | **编码约束** | **语言、调试、代码质量** |
 | api-design-principles.md | API 设计 | RESTful、GraphQL |
 | error-analysis.md | 错误诊断 | 日志、堆栈 |
 | code-explain.md | 代码解释 | 注释、文档 |
