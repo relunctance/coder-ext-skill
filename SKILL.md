@@ -1,7 +1,7 @@
 ---
 name: coder-ext-skill
 description: Coder 技能索引路由器 - 接收任何开发任务，智能推荐最合适的 skill 并执行
-version: 2.0.0
+version: 2.1.0
 author: relunctance
 license: MIT
 category: gql-bots
@@ -36,6 +36,9 @@ hermes:
 | 依赖安全 | deps-audit | 漏洞扫描 |
 | 复杂决策 | ultra-think | 深度思考 |
 | 解释代码 | code-explain | 注释生成 |
+| **安全编码** | security-coding | JWT、CORS、密码哈希 |
+| **前端规范** | frontend-best-practices | Error Boundary、Toast |
+| **URL 规范** | url-standards | 不暴露内部路径 |
 | 不知道用哪个 | bmad-dev | 让它帮你判断 |
 
 ---
@@ -48,7 +51,9 @@ hermes:
 |------------------|-------------|---------|
 | "开始开发" | bmad-dev | `hermes -p coder -s bmad-dev` |
 | "调试 bug" | debugging-strategies | `hermes -p coder -s debugging-strategies` |
-| "统一错误处理" | error-handling-patterns | `hermes -p coder -s error-handling-patterns` |
+| "安全编码"、"JWT"、"密码哈希"、"CORS" | security-coding | `hermes -p coder -s security-coding` |
+| "前端规范"、"Error Boundary"、"Toast" | frontend-best-practices | `hermes -p coder -s frontend-best-practices` |
+| "URL"、"暴露路径"、"访问地址" | url-standards | `hermes -p coder -s url-standards` |
 | "写测试" | write-tests | `hermes -p coder -s write-tests` |
 | "TDD 开发" | tdd | `hermes -p coder -s tdd` |
 | "合并分支" | finishing-a-development-branch | `hermes -p coder -s finishing-a-development-branch` |
@@ -101,6 +106,15 @@ hermes:
 # 依赖/安全
 "依赖"、"漏洞"、"安全" → deps-audit
 "npm audit"、"安全扫描" → deps-audit
+
+# 安全编码（新增）
+"JWT"、"secret"、"密码哈希"、"CORS"、"token黑名单" → security-coding
+
+# 前端规范（新增）
+"前端"、"Error Boundary"、"Toast"、"错误处理" → frontend-best-practices
+
+# URL 规范（新增）
+"URL"、"暴露路径"、"访问地址"、"交付" → url-standards
 
 # API 设计
 "api"、"接口"、"rest" → api-design-principles
@@ -176,6 +190,9 @@ hermes:
 | refactor-code | 重构规范：重构手法、安全重构 | P1 | 重构、refactor |
 | ultra-think | 复杂决策：深度思考、方案评估 | P1 | 决策、方案评估 |
 | deps-audit | 依赖安全：漏洞扫描、版本管理 | P1 | 依赖、安全、漏洞 |
+| **security-coding** | **安全编码：JWT、CORS、密码哈希、Token** | **P0** | **JWT、CORS、密码哈希** |
+| **frontend-best-practices** | **前端规范：Error Boundary、Toast** | **P1** | **前端、Error Boundary** |
+| **url-standards** | **URL 规范：不暴露内部路径** | **P1** | **URL、暴露路径、交付** |
 | api-design-principles | API 设计：RESTful、GraphQL、版本管理 | P2 | api、接口、rest |
 | error-analysis | 错误诊断：日志分析、堆栈跟踪 | P2 | 分析错误、诊断 |
 | code-explain | 代码解释：注释生成、文档提取 | P2 | 解释、说明代码 |
@@ -385,6 +402,9 @@ hermes:
 | refactor-code.md | 重构规范 | 安全重构 |
 | ultra-think.md | 复杂决策 | 深度思考 |
 | deps-audit.md | 依赖安全 | 漏洞扫描 |
+| **security-coding.md** | **安全编码** | **JWT、CORS、密码哈希** |
+| **frontend-best-practices.md** | **前端规范** | **Error Boundary、Toast** |
+| **url-standards.md** | **URL 规范** | **不暴露内部路径** |
 | api-design-principles.md | API 设计 | RESTful、GraphQL |
 | error-analysis.md | 错误诊断 | 日志、堆栈 |
 | code-explain.md | 代码解释 | 注释、文档 |
