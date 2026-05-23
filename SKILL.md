@@ -116,6 +116,11 @@ hermes:
 # URL 规范（新增）
 "URL"、"暴露路径"、"访问地址"、"交付" → url-standards
 
+# Go 规范（新增）
+"go"、"golang"、"并发"、"race"、"goroutine" → go-concurrency
+"go"、"golang"、"风格"、"格式化"、"错误处理" → go-style-guide
+"go"、"golang"、"微服务"、"性能"、"observability" → go-modern
+
 # API 设计
 "api"、"接口"、"rest" → api-design-principles
 "endpoint"、"路由" → api-design-principles
@@ -193,6 +198,9 @@ hermes:
 | **security-coding** | **安全编码：JWT、CORS、密码哈希、Token** | **P0** | **JWT、CORS、密码哈希** |
 | **frontend-best-practices** | **前端规范：Error Boundary、Toast** | **P1** | **前端、Error Boundary** |
 | **url-standards** | **URL 规范：不暴露内部路径** | **P1** | **URL、暴露路径、交付** |
+| **go-concurrency** | **Go 并发：Map 安全、Race Detector** | **P0** | **Go、并发、race、mutex** |
+| **go-style-guide** | **Go 风格：gofmt、错误处理、接口** | **P1** | **Go、风格、格式化** |
+| **go-modern** | **Go 现代：1.21+、微服务、性能** | **P1** | **Go、微服务、性能** |
 | api-design-principles | API 设计：RESTful、GraphQL、版本管理 | P2 | api、接口、rest |
 | error-analysis | 错误诊断：日志分析、堆栈跟踪 | P2 | 分析错误、诊断 |
 | code-explain | 代码解释：注释生成、文档提取 | P2 | 解释、说明代码 |
@@ -405,6 +413,9 @@ hermes:
 | **security-coding.md** | **安全编码** | **JWT、CORS、密码哈希** |
 | **frontend-best-practices.md** | **前端规范** | **Error Boundary、Toast** |
 | **url-standards.md** | **URL 规范** | **不暴露内部路径** |
+| **go-concurrency.md** | **Go 并发** | **Map 安全、Race Detector** |
+| **go-style-guide.md** | **Go 风格** | **gofmt、错误处理、接口** |
+| **go-modern.md** | **Go 现代** | **Go 1.21+、微服务** |
 | api-design-principles.md | API 设计 | RESTful、GraphQL |
 | error-analysis.md | 错误诊断 | 日志、堆栈 |
 | code-explain.md | 代码解释 | 注释、文档 |

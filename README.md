@@ -3,7 +3,7 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Platforms](https://img.shields.io/badge/platforms-hermes-blue.svg)](#)
 [![Version](https://img.shields.io/badge/Version-2.1.0-green.svg)](SKILL.md)
-[![Coder Skills](https://img.shields.io/badge/Coder_Skills-18-orange.svg)](#)
+[![Coder Skills](https://img.shields.io/badge/Coder_Skills-21-orange.svg)](#)
 [![Auto Route](https://img.shields.io/badge/Auto_Route-Enabled-blue.svg)](#)
 
 开发者技能索引路由器 - 接收任何开发任务，智能推荐最合适的 skill 并执行。
@@ -58,6 +58,9 @@ hermes -p coder -s coder-ext-skill
 | security-coding | 安全编码：JWT、CORS、密码哈希 | **P0** |
 | frontend-best-practices | 前端规范：Error Boundary、Toast | **P1** |
 | url-standards | URL 规范：不暴露内部路径 | **P1** |
+| go-concurrency | Go 并发：Map 安全、Race Detector | **P0** |
+| go-style-guide | Go 风格：gofmt、错误处理、接口 | **P1** |
+| go-modern | Go 现代：1.21+、微服务、性能 | **P1** |
 | api-design-principles | API 设计 | P2 |
 | error-analysis | 错误诊断 | P2 |
 | code-explain | 代码解释 | P2 |
