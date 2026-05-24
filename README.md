@@ -76,7 +76,7 @@ hermes -p coder -s coder-ext-skill
 cd /home/gql/repos/coder-ext-skill
 
 # 执行同步脚本
-bash sync-to-hermes.sh coder
+python sync_to_hermes.py coder
 ```
 
 同步后目录结构：

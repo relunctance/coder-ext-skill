@@ -14,7 +14,7 @@
 cd /home/gql/repos/coder-ext-skill
 
 # 执行同步脚本
-bash sync-to-hermes.sh coder
+python sync_to_hermes.py coder
 ```
 
 ### 方式 2：手动安装
@@ -27,7 +27,7 @@ git clone https://github.com/relunctance/coder-ext-skill.git ~/.hermes/profiles/
 cd ~/.hermes/profiles/coder/skills/coder-ext-skill
 
 # 3. 执行同步
-bash sync-to-hermes.sh coder
+python sync_to_hermes.py coder
 ```
 
 ## 验证安装
@@ -88,7 +88,7 @@ MODE_CONFIG: full_auto  # full_auto | semi_auto
 ```bash
 cd /home/gql/repos/coder-ext-skill
 git pull
-bash sync-to-hermes.sh coder
+python sync_to_hermes.py coder
 ```
 
 ## 卸载
